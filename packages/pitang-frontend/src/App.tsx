@@ -20,6 +20,18 @@ function formatTime(seconds: number): string {
   return `${mins.toString().padStart(2, "0")}:${secs.toString().padStart(2, "0")}`;
 }
 
+const modeLabel = {
+  work: "Focus",
+  break: "Short Break",
+  longBreak: "Long Break",
+};
+
+const modeColors = {
+  work: "text-red-400",
+  break: "text-green-400",
+  longBreak: "text-blue-400",
+};
+
 function Timer({ onComplete }: { onComplete: () => void }) {
   const [mode, setMode] = useState<TimerMode>("work");
   const [timeLeft, setTimeLeft] = useState(TIMER_CONFIG.work);
@@ -68,18 +80,6 @@ function Timer({ onComplete }: { onComplete: () => void }) {
   const resetTimer = () => {
     setIsRunning(false);
     setTimeLeft(TIMER_CONFIG[mode]);
-  };
-
-  const modeLabel = {
-    work: "Focus",
-    break: "Short Break",
-    longBreak: "Long Break",
-  };
-
-  const modeColors = {
-    work: "text-red-400",
-    break: "text-green-400",
-    longBreak: "text-blue-400",
   };
 
   return (
