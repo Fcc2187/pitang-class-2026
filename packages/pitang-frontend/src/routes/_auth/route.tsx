@@ -1,7 +1,13 @@
-import { createFileRoute, Outlet } from "@tanstack/react-router";
+import { createFileRoute, Outlet, redirect } from "@tanstack/react-router";
 import { GalleryVerticalEnd } from "lucide-react";
+import { getCookie } from "../../hooks/use-auth";
 
 export const Route = createFileRoute("/_auth")({
+  beforeLoad: () => {
+    if (getCookie("@pitang/accessToken")) {
+      throw redirect({ to: "/dashboard" });
+    }
+  },
   component: RouteComponent,
 });
 

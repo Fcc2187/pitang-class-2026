@@ -6,7 +6,7 @@ import type { LoggedUser } from "@/types";
 
 const baseURL = "https://dummyjson.com";
 
-function getCookie(cookieName: string) {
+export function getCookie(cookieName: string) {
   return document.cookie
     .split("; ")
     .find((c) => c.startsWith(`${cookieName}=`))

@@ -1,3 +1,4 @@
+import { Link } from "@tanstack/react-router";
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -7,10 +8,10 @@ import {
 } from "@/components/ui/dropdown-menu";
 import {
   SidebarGroup,
-  SidebarGroupLabel,
   SidebarMenu,
   SidebarMenuAction,
   SidebarMenuButton,
+  sidebarMenuButtonVariants,
   SidebarMenuItem,
   useSidebar,
 } from "@/components/ui/sidebar";
@@ -36,10 +37,10 @@ export function NavProjects({
       <SidebarMenu>
         {projects.map((item) => (
           <SidebarMenuItem key={item.name}>
-            <SidebarMenuButton render={<a href={item.url} />}>
+            <Link to={item.url} className={sidebarMenuButtonVariants()} activeProps={{ 'data-active': "true" }}>
               {item.icon}
               <span>{item.name}</span>
-            </SidebarMenuButton>
+            </Link>
             <DropdownMenu>
               <DropdownMenuTrigger
                 render={

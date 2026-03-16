@@ -1,9 +1,9 @@
-import { createFileRoute, Outlet, useLocation } from "@tanstack/react-router";
+import { createFileRoute, Outlet, useLocation, redirect } from "@tanstack/react-router";
 import { AppSidebar } from "@/components/app-sidebar";
+import { getCookie } from "../../hooks/use-auth";
 import {
   Breadcrumb,
   BreadcrumbItem,
-  BreadcrumbLink,
   BreadcrumbList,
   BreadcrumbPage,
   BreadcrumbSeparator,
@@ -17,6 +17,11 @@ import {
 import { Fragment } from "react/jsx-runtime";
 
 export const Route = createFileRoute("/dashboard")({
+  beforeLoad: () => {
+    if (!getCookie("@pitang/accessToken")) {
+      throw redirect({ to: "/login" });
+    }
+  },
   component: RouteComponent,
 });
 

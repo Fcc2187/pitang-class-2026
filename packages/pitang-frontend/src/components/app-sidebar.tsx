@@ -14,6 +14,8 @@ import {
 } from "@/components/ui/sidebar";
 import { FrameIcon, PieChartIcon, MapIcon, TerminalIcon, PackageIcon } from "lucide-react";
 import { useAuth } from "@/hooks/use-auth";
+import { Link } from "@tanstack/react-router";
+import { sidebarMenuButtonVariants } from "@/components/ui/sidebar";
 
 const data = {
   navMain: [],
@@ -49,7 +51,7 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
       <SidebarHeader>
         <SidebarMenu>
           <SidebarMenuItem>
-            <SidebarMenuButton size="lg" render={<a href="#" />}>
+            <Link to="/dashboard" className={sidebarMenuButtonVariants({ size: "lg" })}>
               <div className="flex aspect-square size-8 items-center justify-center rounded-lg bg-sidebar-primary text-sidebar-primary-foreground">
                 <TerminalIcon className="size-4" />
               </div>
@@ -61,7 +63,7 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
                   {loggedUser?.company?.title}
                 </span>
               </div>
-            </SidebarMenuButton>
+            </Link>
           </SidebarMenuItem>
         </SidebarMenu>
       </SidebarHeader>
